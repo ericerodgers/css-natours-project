@@ -1,0 +1,47 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* this converts font size from standard 16px to 10px
+  without stopping the user from making their own default font size 
+  So basically, this defines what 1rem is */
+  font-size: 62.5%; //1rem = 10px
+
+  //these are our responsive design mixins we created
+  //the order they appear is crucial
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //we want 1rem = 9px, 9/16 = 56.25%
+  }
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //we want 1rem = 8px, 8/16 = 50%
+  }
+  @include respond(phone) {
+    // width < 600?
+    font-size: 37.5%; //we want 1rem = 6px, 6/16 = 37.5%
+  }
+  @include respond(big-desktop) {
+    //width > 1800?
+    font-size: 75%; //we want 1rem = 12px, 12/16 = 75%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
